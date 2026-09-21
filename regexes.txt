@@ -1,0 +1,8 @@
+1 sed -E 's/.*?([[:digit:]]{3}[[:punct:]][[:digit:]]{3}).*?GN=(\w+)[ =PE].*/>\2_\1/' HK_domain.faa > out_1.fna
+2 sed -E 's/.*?([[:digit:]]{3}[[:punct:]][[:digit:]]{3}).*?([[:upper:]][[:lower:]]{2}[[:upper:]]).*/>\2_\1/' HK_domain.faa > out_2.fna
+3 sed -E 's/.*?([[:digit:]]{3}[[:punct:]][[:digit:]]{3}).*?GN=(\w)(\w+)[ =PE].*/>\u\2\3_\1/' HK_domain.faa > out_3.fna
+4 grep -oP '(?<=[\(,])[^:,;\)\(]+(?=[:,\)])' Tree_of_life.nwk > out_4.txt
+5 grep -Eo '[[:digit:]]\.{1}[[:digit:]]+' Tree_of_life.nwk | awk 'sum+=$1;END{print sum;}' | tail -1 > out_5.txt
+6 find ./find_data/ -regextype egrep -regex ".*?[[:lower:]]{3}[[:upper:]]{1}.*" | wc -l > out_6.txt
+7 find ./find_data/ -regextype egrep -regex ".*?[[:upper:]][[:lower:]]{2}.*" | wc -l > out_7.txt
+8 find ./find_data/ -regextype egrep -regex ".*?[[:upper:]][[:lower:]]{2}.*" -exec cp {} proteins/ \; ; find find_data/ -regextype egrep -regex ".*?[[:lower:]]{3}[[:upper:]]{1}.*" -exec cp {} genes/ \;
