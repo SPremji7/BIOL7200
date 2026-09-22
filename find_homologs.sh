@@ -4,7 +4,7 @@ tblastn -query $1 \
   -subject $2 \
   -outfmt "6 pident qlen length std" -out $output
   
-awk '{if (($3*0.9>=$2) && ($1>=30)) {print $0}}' $output > hold.fna
+awk '{if (($2*0.9>=$3) && ($1>=30)) {print $0}}' $output > hold.fna
 sed '' hold.fna > $output
 rm hold.fna
 
