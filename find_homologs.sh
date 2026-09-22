@@ -1,6 +1,6 @@
 #! /bin/bash
 output=$3
-blastn -query $1 \
+tblastn -query $1 \
   -subject $2 \
   -task blastn-short \
   -outfmt "6 std sseq qlen" -out $output
